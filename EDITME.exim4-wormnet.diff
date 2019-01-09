@@ -1,0 +1,271 @@
+--- EDITME.exim4-heavy.orig	2018-12-28 17:49:33.000000000 +0000
++++ EDITME.exim4-wormnet	2018-12-28 17:49:33.000000000 +0000
+@@ -210,14 +210,14 @@
+
+ ROUTER_ACCEPT=yes
+ ROUTER_DNSLOOKUP=yes
+-ROUTER_IPLITERAL=yes
+-ROUTER_MANUALROUTE=yes
+-ROUTER_QUERYPROGRAM=yes
++#ROUTER_IPLITERAL=yes
++#ROUTER_MANUALROUTE=yes
++#ROUTER_QUERYPROGRAM=yes
+ ROUTER_REDIRECT=yes
+
+ # This one is very special-purpose, so is not included by default.
+
+-ROUTER_IPLOOKUP=yes
++#ROUTER_IPLOOKUP=yes
+
+
+ #------------------------------------------------------------------------------
+@@ -247,9 +247,9 @@
+ # MBX, is included only when requested. If you do not know what this is about,
+ # leave these settings commented out.
+
+-SUPPORT_MAILDIR=yes
+-SUPPORT_MAILSTORE=yes
+-SUPPORT_MBX=yes
++#SUPPORT_MAILDIR=yes
++#SUPPORT_MAILSTORE=yes
++#SUPPORT_MBX=yes
+
+
+ #------------------------------------------------------------------------------
+@@ -310,17 +310,17 @@
+ LOOKUP_CDB=yes
+ LOOKUP_DSEARCH=yes
+ # LOOKUP_IBASE=yes
+-LOOKUP_LDAP=yes
+-LOOKUP_MYSQL=yes
++#LOOKUP_LDAP=yes
++#LOOKUP_MYSQL=yes
+ # LOOKUP_MYSQL_PC=mariadb
+-LOOKUP_NIS=yes
++#LOOKUP_NIS=yes
+ # LOOKUP_NISPLUS=yes
+ # LOOKUP_ORACLE=yes
+-LOOKUP_PASSWD=yes
++#LOOKUP_PASSWD=yes
+ LOOKUP_PGSQL=yes
+ # LOOKUP_REDIS=yes
+ LOOKUP_SQLITE=yes
+-# LOOKUP_SQLITE_PC=sqlite3
++LOOKUP_SQLITE_PC=sqlite3
+ # LOOKUP_WHOSON=yes
+
+ # These two settings are obsolete; all three lookups are compiled when
+@@ -384,9 +384,8 @@
+ # LOOKUP_INCLUDE=-I /usr/local/ldap/include -I /usr/local/mysql/include -I /usr/local/pgsql/include
+ # LOOKUP_LIBS=-L/usr/local/lib -lldap -llber -lmysqlclient -lpq -lgds -lsqlite3
+
+-
+-LOOKUP_INCLUDE=-I/usr/include/mysql -I`pg_config --includedir`
+-LOOKUP_LIBS=-lldap -llber -lmysqlclient -lpq -lsqlite3
++LOOKUP_INCLUDE=-I/usr/include/postgresql
++LOOKUP_LIBS=-lpq -lsqlite3
+
+ #------------------------------------------------------------------------------
+ # Compiling the Exim monitor: If you want to compile the Exim monitor, a
+@@ -411,15 +410,15 @@
+ # If you have content scanning you may wish to only include some of the scanner
+ # interfaces.  Uncomment any of these lines to remove that code.
+
+-# DISABLE_MAL_FFROTD=yes
+-# DISABLE_MAL_FFROT6D=yes
+-# DISABLE_MAL_DRWEB=yes
+-# DISABLE_MAL_FSECURE=yes
+-# DISABLE_MAL_SOPHIE=yes
++DISABLE_MAL_FFROTD=yes
++DISABLE_MAL_FFROT6D=yes
++DISABLE_MAL_DRWEB=yes
++DISABLE_MAL_FSECURE=yes
++DISABLE_MAL_SOPHIE=yes
+ # DISABLE_MAL_CLAM=yes
+-# DISABLE_MAL_AVAST=yes
+-# DISABLE_MAL_SOCK=yes
+-# DISABLE_MAL_CMDLINE=yes
++DISABLE_MAL_AVAST=yes
++DISABLE_MAL_SOCK=yes
++DISABLE_MAL_CMDLINE=yes
+
+ # These scanners are claimed to be no longer existent.
+
+@@ -484,14 +483,14 @@
+
+ # Uncomment the following line to add DMARC checking capability, implemented
+ # using libopendmarc libraries. You must have SPF and DKIM support enabled also.
+-# EXPERIMENTAL_DMARC=yes
+-# DMARC_TLD_FILE= /etc/exim/opendmarc.tlds
++EXPERIMENTAL_DMARC=yes
++DMARC_TLD_FILE= /etc/exim/opendmarc.tlds
+ # CFLAGS += -I/usr/local/include
+-# LDFLAGS += -lopendmarc
++LDFLAGS += -lopendmarc
+
+ # Uncomment the following line to add ARC (Authenticated Received Chain)
+ # support.  You must have SPF and DKIM support enabled also.
+-# EXPERIMENTAL_ARC=yes
++EXPERIMENTAL_ARC=yes
+
+ # Uncomment the following lines to add Brightmail AntiSpam support. You need
+ # to have the Brightmail client SDK installed. Please check the experimental
+@@ -503,7 +502,7 @@
+ # LDFLAGS += -lxml2_single -lbmiclient_single -L/opt/brightmail/bsdk-6.0/lib
+
+ # Uncomment the following to include extra information in fail DSN message (bounces)
+-# EXPERIMENTAL_DSN_INFO=yes
++EXPERIMENTAL_DSN_INFO=yes
+
+ # Uncomment the following to add LMDB lookup support
+ # You need to have LMDB installed on your system (https://github.com/LMDB/lmdb)
+@@ -642,17 +641,17 @@
+ # included in the Exim binary. You will then need to set up the run time
+ # configuration to make use of the mechanism(s) selected.
+
+-AUTH_CRAM_MD5=yes
++#AUTH_CRAM_MD5=yes
+ AUTH_CYRUS_SASL=yes
+-AUTH_DOVECOT=yes
++#AUTH_DOVECOT=yes
+ # AUTH_GSASL=yes
+ # AUTH_GSASL_PC=libgsasl
+ # AUTH_HEIMDAL_GSSAPI=yes
+ # AUTH_HEIMDAL_GSSAPI_PC=heimdal-gssapi
+ # AUTH_HEIMDAL_GSSAPI_PC=heimdal-gssapi heimdal-krb5
+-AUTH_PLAINTEXT=yes
+-AUTH_SPA=yes
+-AUTH_TLS=yes
++#AUTH_PLAINTEXT=yes
++#AUTH_SPA=yes
++#AUTH_TLS=yes
+
+ # Heimdal through 1.5 required pkg-config 'heimdal-gssapi'; Heimdal 7.1
+ # requires multiple pkg-config files to work with Exim, so the second example
+@@ -769,13 +768,13 @@
+
+ # Uncomment one of these settings if you are using OpenSSL; pkg-config vs not
+ # USE_OPENSSL_PC=openssl
+-# TLS_LIBS=-lssl -lcrypto
++TLS_LIBS=-lssl -lcrypto
+
+ # Uncomment the first and either the second or the third of these if you
+ # are using GnuTLS.  If you have pkg-config, then the second, else the third.
+-USE_GNUTLS=yes
++# USE_GNUTLS=yes
+ # USE_GNUTLS_PC=gnutls
+-TLS_LIBS=-lgnutls
++# TLS_LIBS=-lgnutls
+
+ # If using GnuTLS older than 2.10 and using pkg-config then note that Exim's
+ # build process will require libgcrypt-config to exist in your $PATH.  A
+@@ -811,7 +810,7 @@
+ # TLS_LIBS=-L/opt/gnu/lib -lgnutls -ltasn1 -lgcrypt
+
+ # For DANE under GnuTLS we need an additional library.
+-TLS_LIBS += -lgnutls-dane
++#TLS_LIBS += -lgnutls-dane
+
+ # TLS_LIBS is included only on the command for linking Exim itself, not on any
+ # auxiliary programs. If the include files are not in a standard place, you can
+@@ -831,14 +830,14 @@
+ # to be recompiled with the desired local_scan function. For a full
+ # description of the API to this function, see the Exim specification.
+
+-DLOPEN_LOCAL_SCAN=yes
++#DLOPEN_LOCAL_SCAN=yes
+
+ # If you set DLOPEN_LOCAL_SCAN, then you need to include -rdynamic in the
+ # linker flags.  Without it, the loaded .so won't be able to access any
+ # functions from exim.
+
+-LDFLAGS += -rdynamic
+-CFLAGS += -fvisibility=hidden
++#LDFLAGS += -rdynamic
++#CFLAGS += -fvisibility=hidden
+
+ #------------------------------------------------------------------------------
+ # The default distribution of Exim contains only the plain text form of the
+@@ -942,7 +941,7 @@
+ # (version 5.004 or later) installed, set EXIM_PERL to perl.o. Using embedded
+ # Perl costs quite a lot of resources. Only do this if you really need it.
+
+-EXIM_PERL=perl.o
++#EXIM_PERL=perl.o
+
+
+ #------------------------------------------------------------------------------
+@@ -952,7 +951,7 @@
+ # that the local_scan API is made available by the linker. You may also need
+ # to add -ldl to EXTRALIBS so that dlopen() is available to Exim.
+
+-EXPAND_DLFUNC=yes
++#EXPAND_DLFUNC=yes
+
+
+ #------------------------------------------------------------------------------
+@@ -962,11 +961,11 @@
+ # support, which is intended for use in conjunction with the SMTP AUTH
+ # facilities, is included only when requested by the following setting:
+
+-SUPPORT_PAM=yes
++#SUPPORT_PAM=yes
+
+ # You probably need to add -lpam to EXTRALIBS, and in some releases of
+ # GNU/Linux -ldl is also needed.
+-EXTRALIBS=-lpam -export-dynamic
++#EXTRALIBS=-lpam -export-dynamic
+
+
+ #------------------------------------------------------------------------------
+@@ -975,12 +974,12 @@
+ # If you may want to use outbound (client-side) proxying, using Socks5,
+ # uncomment the line below.
+
+-SUPPORT_SOCKS=yes
++#SUPPORT_SOCKS=yes
+
+ # If you may want to use inbound (server-side) proxying, using Proxy Protocol,
+ # uncomment the line below.
+
+-SUPPORT_PROXY=yes
++#SUPPORT_PROXY=yes
+
+
+ #------------------------------------------------------------------------------
+@@ -993,10 +992,10 @@
+ # If you want IDNA2008 mappings per RFCs 5890, 6530 and 6533, you additionally
+ # need libidn2 and SUPPORT_I18N_2008.
+
+-# SUPPORT_I18N=yes
+-# LDFLAGS += -lidn
+-# SUPPORT_I18N_2008=yes
+-# LDFLAGS += -lidn -lidn2
++SUPPORT_I18N=yes
++LDFLAGS += -lidn
++SUPPORT_I18N_2008=yes
++LDFLAGS += -lidn -lidn2
+
+
+ #------------------------------------------------------------------------------
+@@ -1004,9 +1003,9 @@
+ # installed on your system (www.libspf2.org). Depending on where it is installed
+ # you may have to edit the CFLAGS and LDFLAGS lines.
+
+-# SUPPORT_SPF=yes
++SUPPORT_SPF=yes
+ # CFLAGS  += -I/usr/local/include
+-# LDFLAGS += -lspf2
++LDFLAGS += -lspf2
+
+
+ #------------------------------------------------------------------------------
+@@ -1157,7 +1156,7 @@
+ #------------------------------------------------------------------------------
+ # Uncomment this setting to include IPv6 support.
+
+-# HAVE_IPV6=yes
++HAVE_IPV6=yes
+
+ ###############################################################################
+ #              THINGS YOU ALMOST NEVER NEED TO MENTION                        #
