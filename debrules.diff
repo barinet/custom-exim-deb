@@ -1,0 +1,23 @@
+--- /old/exim4-4.91.old/debian/rules	2019-01-11 12:34:43.954747000 +0000
++++ debian/rules	2019-01-11 13:58:12.373792000 +0000
+@@ -77,16 +77,14 @@
+ 	touch unpack-configs-stamp
+
+ pack-configs:
+-	-diff -u src/EDITME EDITME.exim4-light \
+-		> $(DEBIAN)/EDITME.exim4-light.diff
+-	-for editme in EDITME.exim4-*; do \
++	diff -u src/EDITME EDITME.exim4-light > $(DEBIAN)/EDITME.exim4-light.diff || /bin/true
++	for editme in EDITME.exim4-*; do \
+ 	  if [ "$$editme" != "EDITME.exim4-light" ]; then \
+ 	    echo diff -u EDITME.exim4-light $$editme; \
+-	    diff -u EDITME.exim4-light $$editme > $(DEBIAN)/$${editme}.diff; \
++	    diff -u EDITME.exim4-light $$editme > $(DEBIAN)/$${editme}.diff || /bin/true; \
+ 	  fi; \
+ 	done
+-	-diff -u exim_monitor/EDITME EDITME.eximon \
+-		> $(DEBIAN)/EDITME.eximon.diff
++	diff -u exim_monitor/EDITME EDITME.eximon > $(DEBIAN)/EDITME.eximon.diff || /bin/true
+
+ bdir-stamp: unpack-configs-stamp
+ 	for i in $(daemons) ; do \
