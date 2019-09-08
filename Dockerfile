@@ -1,7 +1,7 @@
-FROM i386/debian:latest
+FROM i386/debian:buster
 
 # add in Debian testing source repositories
-RUN /usr/bin/perl -i -ne 'print; s/^deb /deb-src / && s/stretch/testing/ && print' /etc/apt/sources.list
+RUN /usr/bin/perl -i -ne 'print; s/^deb /deb-src / && s/buster /unstable / && print' /etc/apt/sources.list
 
 # exim4 source plus some libraries not pulled in by default
 RUN /usr/bin/apt-get update && /usr/bin/apt-get install -y apt-src && /usr/bin/apt-src install exim4 && \
