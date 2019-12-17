@@ -1,13 +1,13 @@
---- debian/control.orig	2019-01-11 15:28:31.133058000 +0000
-+++ debian/control	2019-01-11 15:30:26.394607000 +0000
-@@ -235,38 +235,38 @@
+--- debian/control.orig	2019-12-17 09:08:39.867919000 +0000
++++ debian/control	2019-12-17 09:11:28.887108000 +0000
+@@ -240,38 +240,38 @@
   can find the subscription web page on
   http://lists.alioth.debian.org/mailman/listinfo/pkg-exim4-users
-
+ 
 -#Package: exim4-daemon-custom
 -#Architecture: any
 -#Priority: optional
--#Provides: exim4-localscanapi-2.0, mail-transport-agent
+-#Provides: exim4-localscanapi-3.1, mail-transport-agent
 -#Conflicts: mail-transport-agent
 -#Replaces: exim4-base (<= 4.61-1), mail-transport-agent
 -#Depends:
@@ -39,7 +39,7 @@
 +Package: exim4-daemon-custom
 +Architecture: any
 +Priority: optional
-+Provides: mail-transport-agent
++Provides: exim4-localscanapi-3.1, mail-transport-agent
 +Conflicts: mail-transport-agent
 +Replaces: exim4-base (<= 4.61-1), mail-transport-agent
 +Depends:
@@ -68,6 +68,6 @@
 + list if you are sure that your question is not Debian-specific. You
 + can find the subscription web page on
 + http://lists.alioth.debian.org/mailman/listinfo/pkg-exim4-users
-
+ 
  Package: eximon4
  Architecture: any
